@@ -50,30 +50,37 @@ def decode(path):
 ##################################
     info += "   public static getData(" + getArg(key,valueType) + "):" + na +"\n"
     info += "   {\n"  
-    info += "      let key:string = " + getkey(key) + ";\n"
-    info += "      return this.dataList[key]\n"
+    info += "       let key:string = " + getkey(key) + ";\n"
+    info += "       return this.dataList[key]\n"
     info += "   }\n\n"
 ##################################
 
+    if(len(key) > 1):
+        info += "   public static getDataByKey(key:string)\n"
+        info += "   {\n"
+        info += "       key = key.replace('|','_')\n"
+        info += "       return this.dataList[key];\n"
+        info += "   }\n\n"
+
     info += "   public static decodeJson(data:any)\n"
     info += "   {\n"	
-    info += "      for(let j in data)\n"
-    info += "      {\n"	
-    info += "          let vo:" + na + " = data[j];\n"
-    info += "          let keyIdx:string = '';\n"
-    info += "          for(let i:number = 0; i < this.key.length; i++)\n"
-    info += "          {\n"
-    info += "               keyIdx += vo[this.key[i]] + (i == this.key.length - 1 ? '' : '_');\n"
-    info += "          }\n"
-    info += "          this.dataList[keyIdx] = vo;\n"
-    info += "      }\n"
+    info += "       for(let j in data)\n"
+    info += "       {\n"	
+    info += "           let vo:" + na + " = data[j];\n"
+    info += "           let keyIdx:string = '';\n"
+    info += "           for(let i:number = 0; i < this.key.length; i++)\n"
+    info += "           {\n"
+    info += "                keyIdx += vo[this.key[i]] + (i == this.key.length - 1 ? '' : '_');\n"
+    info += "           }\n"
+    info += "           this.dataList[keyIdx] = vo;\n"
+    info += "       }\n"
     info += "   }\n"
 
 ##################################
     info += "}\n"
     info += "window[" +  "'" + na + "'" + "] = " + na  + ";"
     tsName = na + ".ts"
-    url = "D:\\RogelikeGameV3\\src\\json\\"
+    url = "F:\\rogelikeGame\\src\\json\\"
     newPath = url +  tsName
     f=open(newPath,"w",encoding="utf-8")#utf8中文编码
     f.write(info)
