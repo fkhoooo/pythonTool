@@ -25,7 +25,7 @@ def decode(path):
     for i in range(len(pro)):
         info += "   public " + pro[i] + ":" + getValueType(valueType[i]) + "//" + annot[i] + ";\n"
     
-    info += "   private static dataList:any = {};\n"
+    info += "   public static dataList:any = {};\n"
     info += "   private static key:string[] = ["
     key = []
     for i in range(len(annot)):

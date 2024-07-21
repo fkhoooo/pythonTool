@@ -24,7 +24,10 @@ def resolve(path):
         for j in range (length):
             if (typedata[j].find("List") != -1 or typedata[j].find("any") != -1):
                 if(not rowList[j] is None):
-                    setlist[key[j]] = eval(rowList[j])
+                    try:
+                        setlist[key[j]] = eval(rowList[j])
+                    except:
+                        print(rowList[j],"error")
                 else:
                     setlist[key[j]] = None
             else:
